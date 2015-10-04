@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     root :to => 'devise/sessions#create'
   end
 
+  resources :copayers, only: [:create, :update, :destroy]
+
 end
