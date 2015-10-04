@@ -1,0 +1,21 @@
+<h2><%= bill.title %></h2>
+<p><%= bill.description %></p>
+<p><strong>To be paid on: <%= bill.day_of_month %></p>
+<p>Total amount: <%= bill.total_amount %></p>
+<%= form_tag bill_path(bill), method: :patch, remote: true do %>
+
+  <%= label_tag :title %>
+  <%= text_field_tag :title, bill.title %>
+
+  <%= label_tag :description %>
+  <%= text_area_tag :description, bill.description %>
+
+  <%= label_tag :day_of_month %>
+  <%= number_field_tag :day_of_month, bill.day_of_month %>
+
+  <%= label_tag :total_amount %>
+  <%= number_field_tag :total_amount, bill.total_amount %>
+
+<% end %>
+<h3>Copayers:</h3>
+<%= render partial: 'copayer', collection: bill.copayers, as: :copayer %>

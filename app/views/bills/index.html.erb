@@ -1,1 +1,18 @@
 <h1>Bills</h1>
+<%= render partial: 'bill', collection: @bills, as: :bill %>
+<h3>Create a new bill</h3>
+<%= form_tag bills_path, method: :post, remote: true do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title, nil %>
+
+  <%= label_tag :description %>
+  <%= text_area_tag :description, nil %>
+
+  <%= label_tag :day_of_month %>
+  <%= number_field_tag :day_of_month, nil %>
+
+  <%= label_tag :total_amount %>
+  <%= number_field_tag :total_amount, nil %>
+
+  <%= submit_tag %>
+<% end %>

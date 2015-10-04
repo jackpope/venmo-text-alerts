@@ -35,7 +35,7 @@ end
 
 # t.string   "title"
 # t.text     "description"
-# t.date     "due_date"
+# t.integer  "day_of_month"
 # t.integer  "user_id"
 # t.float    "total_amount"
 
@@ -44,7 +44,7 @@ User.all.each do |user|
     user.bills.create(
       title: Faker::Lorem.sentence,
       description: Faker::Lorem.sentence,
-      due_date: Faker::Date.forward(30),
+      day_of_month: rand(1..30),
       total_amount: Faker::Number.decimal(2)
       )
   end

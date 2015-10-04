@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     root :to => 'devise/sessions#create'
   end
 
+  resources :bills, except: [:new, :edit]
   resources :copayers, only: [:create, :update, :destroy]
 
 end

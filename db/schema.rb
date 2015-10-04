@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004193846) do
+ActiveRecord::Schema.define(version: 20151004205546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20151004193846) do
   create_table "bills", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.date     "due_date"
     t.integer  "user_id"
     t.float    "total_amount"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "day_of_month"
   end
 
   add_index "bills", ["user_id"], name: "index_bills_on_user_id", using: :btree
