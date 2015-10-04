@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 RSpec.describe Bill, type: :model do
   it "has a valid factory" do
