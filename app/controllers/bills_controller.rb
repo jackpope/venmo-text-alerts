@@ -19,7 +19,7 @@ class BillsController < ApplicationController
   end
 
   def update
-    @bill = Bill.find(params[:bill_id])
+    @bill = Bill.find(params[:id])
     if @bill.update_attributes(bill_params)
       respond_to do |format|
         format.html do

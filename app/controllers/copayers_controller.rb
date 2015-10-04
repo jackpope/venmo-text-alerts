@@ -20,7 +20,7 @@ class CopayersController < ApplicationController
   end
 
   def update
-    @copayer = Copayer.find(params[:copayer_id])
+    @copayer = Copayer.find(params[:id])
     if @copayer.update_attributes(copayer_params)
       respond_to do |format|
         format.html do

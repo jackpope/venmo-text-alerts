@@ -16,6 +16,8 @@
   <%= label_tag :total_amount %>
   <%= number_field_tag :total_amount, bill.total_amount %>
 
+  <%= submit_tag %>
+
 <% end %>
 <h3>Copayers:</h3>
 <%= render partial: 'copayer', collection: bill.copayers, as: :copayer %>
