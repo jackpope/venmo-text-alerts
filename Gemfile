@@ -27,6 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Devise for user authentication
 gem 'devise'
 
+# figaro for environmental variables
+gem 'figaro'
+
 group :development, :test do
   # Use pry for debugging
   gem 'pry'
