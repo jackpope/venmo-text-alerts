@@ -1,9 +1,7 @@
 class BillsController < ApplicationController
 
-
   def create
     @bill = current_user.bills.new(bill_params)
-    binding.pry
     if @bill.save
       respond_to do |format|
         format.html do
@@ -21,6 +19,21 @@ class BillsController < ApplicationController
   end
 
   def update
+    @bill = Bill.find(params[:bill_id])
+    if @bill.update_attributes(bill_params)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Bill was updated"
+          redirect_to bills_path
+        end
+        format.js do
+          render :update_bill
+        end
+      end
+    else
+      flash[:error] = "There was an error updating the bill. Please try again."
+      redirect_to bills_path
+    end
   end
 
   def index
@@ -28,6 +41,13 @@ class BillsController < ApplicationController
   end
 
   def destroy
+    @bill = Bill.find(params[:bill_id])
+    if @bill.delete
+      render nothing: true
+    else
+      flash[:error] = "There was an error deleting the bill. Please try again."
+      redirect_to bills_path
+    end
   end
 
   private

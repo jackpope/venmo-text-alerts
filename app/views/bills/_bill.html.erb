@@ -19,3 +19,22 @@
 <% end %>
 <h3>Copayers:</h3>
 <%= render partial: 'copayer', collection: bill.copayers, as: :copayer %>
+<h3>Add a Copayer:</h3>
+<%= form_tag copayers_path, method: :post, remote: true do %>
+  <%= label_tag :first_name %>
+  <%= text_field_tag :first_name %>
+
+  <%= label_tag :last_name %>
+  <%= text_field_tag :last_name %>
+
+  <%= label_tag :amount %>
+  <%= text_field_tag :amount %>
+
+  <%= label_tag :phone_number %>
+  <%= text_field_tag :phone_number %>
+
+  <%= hidden_field_tag :bill_id, bill.id %>
+
+  <%= submit_tag %>
+
+<% end %>
