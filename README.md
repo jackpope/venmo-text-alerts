@@ -1,6 +1,6 @@
 # Venmo Text Alerts
 
-## A project built in one day with Ruby on Rails, and Twilio.
+### A project built in one day with Ruby on Rails, Postgres, Devise, Bootstrap, and Twilio.
 
 Send text messages with venmo links to friends or family to automate your shared monthly bills.
 
