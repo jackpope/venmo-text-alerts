@@ -33,6 +33,9 @@ gem 'figaro'
 # Twilio for texting
 gem 'twilio-ruby'
 
+# Whenever to run rake commands
+gem 'whenever', require: false
+
 group :development, :test do
   # Use pry for debugging
   gem 'pry'
