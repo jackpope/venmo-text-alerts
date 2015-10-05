@@ -1,24 +1,11 @@
-<hr>
-<%= form_tag copayer_path(copayer), method: :patch, remote: true do %>
-  <div class="form-group">  
-    <%= label_tag :first_name %>
-    <%= text_field_tag :first_name, copayer.first_name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :last_name %>
-    <%= text_field_tag :last_name, copayer.last_name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :amount %>
-    <%= text_field_tag :amount, copayer.amount, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :phone_number %>
-    <%= text_field_tag :phone_number, copayer.phone_number, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= submit_tag "Update", class: 'btn btn-primary' %>
-  </div>
-<% end %>
-<hr>
-
+<tr>
+  <td><%= copayer.name %></td>
+  <td><%= copayer.amount %></td>
+  <td><%= copayer.phone_number %></td>
+  <td>
+    <button type="button" class="btn btn-warning btn-copayer-table" data-toggle="modal" data-target="#copayer-update-<%= copayer.id %>">
+      Edit
+    </button>
+  </td>
+  <td><%= link_to "Delete", copayer_path(copayer), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-copayer-table' %></td>
+</tr>
