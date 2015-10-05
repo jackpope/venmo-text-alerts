@@ -7,8 +7,20 @@
         <%= devise_error_messages! %>
 
         <div class="form-group">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: 'form-control' %>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :venmo_user_name, "Venmo User Name" %>
+          <%= f.text_field :venmo_user_name, class: 'form-control' %>
         </div>
 
         <div class="form-group">
