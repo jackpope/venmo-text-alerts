@@ -1,1 +1,3 @@
-console.log('new bill:' + "<%=j @bill.title %>")
+$('#bill-collection').empty();
+$('#bill-collection').append("<%=j render partial: 'bill', collection: current_user.bills, as: :bill %>");
+$('#new-bill-modal').modal('hide');
