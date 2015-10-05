@@ -29,4 +29,11 @@ RSpec.describe Copayer, type: :model do
     end
   end
 
+  describe "#name" do
+    it "joins the first and last name" do
+      copayer = FactoryGirl.build(:copayer, first_name: 'John', last_name: 'Doe')
+      expect(copayer.name).to eq("John Doe")
+    end
+  end
+
 end
