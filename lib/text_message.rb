@@ -27,16 +27,16 @@ class TextMessage
   end
 
   def self.post_message(number_to, body)
-    account_id = ENV['TWILIO_SID']
+    account_sid = ENV['TWILIO_SID']
     auth_token = ENV['TWILIO_AUTH_TOKEN']
 
     @client = Twilio::REST::Client.new account_sid, auth_token 
-   
+ 
     @client.account.messages.create({
-      :from => ENV['TWILIO_NUMBER'], 
+      :from => "+" + ENV['TWILIO_NUMBER'], 
       :to => number_to, 
       :body => body,  
     })
   end
-  
+
 end
