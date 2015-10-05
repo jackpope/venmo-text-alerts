@@ -43,7 +43,7 @@
     </div>
     <div class="col-md-8">
       <h2>Copayers:</h2>
-      <table class="table table-hover">
+      <table class="table table-hover" id="bill-table-<%= bill.id %>">
         <thead>
           <td>Name</td>
           <td>Amount Owed</td>
@@ -51,7 +51,9 @@
         </thead>
         <%= render partial: 'copayer', collection: bill.copayers, as: :copayer %>
       </table>
-      <%= render partial: 'copayer_update_form', collection: bill.copayers, as: :copayer %>
+      <div id="bill-copayer-update-form-<%= bill.id %>">
+        <%= render partial: 'copayer_update_form', collection: bill.copayers, as: :copayer %>
+      </div>
       <div class="modal fade" id="copayer-add-<%= bill.id %>" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

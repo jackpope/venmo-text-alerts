@@ -37,3 +37,7 @@
 .fifty-space {
   height:50px;
 }
+
+.modal-open {
+  overflow: scroll;
+}

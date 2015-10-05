@@ -9,7 +9,7 @@ class BillsController < ApplicationController
           redirect_to bills_path
         end
         format.js do
-          render :create_bill
+          render '/bills/bill.js.erb'
         end
       end
     else
@@ -27,7 +27,7 @@ class BillsController < ApplicationController
           redirect_to bills_path
         end
         format.js do
-          render :update_bill
+          render '/bills/bill.js.erb'
         end
       end
     else

@@ -1,0 +1,5 @@
+$("#bill-table-<%= @bill.id %>").html("<table class='table table-hover' id='bill-table-<%= @bill.id %>'><thead><td>Name</td><td>Amount Owed</td><td>Phone Number</td></thead><%=j render partial: 'bills/copayer', collection: @bill.copayers, as: :copayer %></table>");
+$("#bill-copayer-update-form-<%= @bill.id %>").empty();
+$("#bill-copayer-update-form-<%= @bill.id %>").append("<%=j render partial: 'bills/copayer_update_form', collection: @bill.copayers, as: :copayer %>");
+$('.modal').modal('hide');
+$(".modal-backdrop").remove();

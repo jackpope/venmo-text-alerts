@@ -10,7 +10,7 @@ class CopayersController < ApplicationController
           redirect_to bills_path
         end
         format.js do
-          render '/bills/create_copayer.js.erb'
+          render '/bills/copayer.js.erb'
         end
       end
     else
@@ -21,6 +21,7 @@ class CopayersController < ApplicationController
 
   def update
     @copayer = Copayer.find(params[:id])
+    @bill = @copayer.bill
     if @copayer.update_attributes(copayer_params)
       respond_to do |format|
         format.html do
@@ -28,7 +29,7 @@ class CopayersController < ApplicationController
           redirect_to bills_path
         end
         format.js do
-          render '/bills/update_copayer.js.erb'
+          render '/bills/copayer.js.erb'
         end
       end
     else
@@ -38,9 +39,18 @@ class CopayersController < ApplicationController
   end
 
   def destroy
-    @copayer = Copayer.find(params[:copayer_id])
+    @copayer = Copayer.find(params[:id])
+    @bill = @copayer.bill
     if @copayer.delete
-      render nothing: true
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Copayer was updated"
+          redirect_to bills_path
+        end
+        format.js do
+          render '/bills/copayer.js.erb'
+        end
+      end
     else
       flash[:error] = "There was a problem deleting the copayer. Please try again."
       redirect_to bills_path

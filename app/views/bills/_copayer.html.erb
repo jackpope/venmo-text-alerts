@@ -7,5 +7,5 @@
       Edit
     </button>
   </td>
-  <td><%= link_to "Delete", copayer_path(copayer), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-copayer-table' %></td>
+  <td><%= link_to "Delete", copayer_path(copayer), method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-copayer-table' %></td>
 </tr>
