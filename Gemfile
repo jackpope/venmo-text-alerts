@@ -30,6 +30,9 @@ gem 'devise'
 # figaro for environmental variables
 gem 'figaro'
 
+# Twilio for texting
+gem 'twilio-ruby'
+
 group :development, :test do
   # Use pry for debugging
   gem 'pry'

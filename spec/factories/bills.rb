@@ -5,5 +5,6 @@ FactoryGirl.define do
     f.description { Faker::Lorem.sentence }
     f.day_of_month { rand(1..28) }
     f.total_amount { Faker::Number.decimal(2) }
+    f.user_id 1
   end
 end
