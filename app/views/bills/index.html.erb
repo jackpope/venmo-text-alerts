@@ -1,18 +1,28 @@
-<h1>Bills</h1>
-<%= render partial: 'bill', collection: @bills, as: :bill %>
-<h3>Create a new bill</h3>
-<%= form_tag bills_path, method: :post, remote: true do %>
-  <%= label_tag :title %>
-  <%= text_field_tag :title, nil %>
-
-  <%= label_tag :description %>
-  <%= text_area_tag :description, nil %>
-
-  <%= label_tag :day_of_month %>
-  <%= number_field_tag :day_of_month, nil %>
-
-  <%= label_tag :total_amount %>
-  <%= number_field_tag :total_amount, nil %>
-
-  <%= submit_tag %>
-<% end %>
+<div class="container">
+  <h1>Bills</h1>
+  <div class="row">
+    <%= render partial: 'bill', collection: @bills, as: :bill %>
+  </div>
+  <h3>Create a new bill</h3>
+  <%= form_tag bills_path, method: :post, remote: true do %>
+    <div class="form-group">
+      <%= label_tag :title %>
+      <%= text_field_tag :title, nil, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :description %>
+      <%= text_area_tag :description, nil, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :day_of_month %>
+      <%= number_field_tag :day_of_month, nil %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :total_amount %>
+      <%= number_field_tag :total_amount, nil %>
+    </div>
+    <div class="form-group">
+      <%= submit_tag "Create", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

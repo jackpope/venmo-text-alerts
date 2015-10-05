@@ -1,19 +1,24 @@
 <hr>
 <%= form_tag copayer_path(copayer), method: :patch, remote: true do %>
-  
-  <%= label_tag :first_name %>
-  <%= text_field_tag :first_name, copayer.first_name %>
-
-  <%= label_tag :last_name %>
-  <%= text_field_tag :last_name, copayer.last_name %>
-
-  <%= label_tag :amount %>
-  <%= text_field_tag :amount, copayer.amount %>
-
-  <%= label_tag :phone_number %>
-  <%= text_field_tag :phone_number, copayer.phone_number %>
-
-  <%= submit_tag %>
-
+  <div class="form-group">  
+    <%= label_tag :first_name %>
+    <%= text_field_tag :first_name, copayer.first_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :last_name %>
+    <%= text_field_tag :last_name, copayer.last_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :amount %>
+    <%= text_field_tag :amount, copayer.amount, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :phone_number %>
+    <%= text_field_tag :phone_number, copayer.phone_number, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= submit_tag "Update", class: 'btn btn-primary' %>
+  </div>
 <% end %>
 <hr>
+
