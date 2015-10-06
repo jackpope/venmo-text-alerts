@@ -3,8 +3,11 @@
     <div class="col-md-4">
       <h2><%= bill.title %></h2>
       <p><%= bill.description %></p>
-      <p><strong>To be paid on: <%= bill.day_of_month %></p>
-      <p>Total amount: <%= bill.total_amount %></p>
+      <strong>
+        <p>To be paid on the <%= bill.day_of_month %>th of every month</p>
+        <p>Total amount: <%= number_to_currency(bill.total_amount) %></p>
+        <p>Total due after <%= plural_ownership(bill.copayers.count, "copayer") %> portion: <%= number_to_currency(bill.amount_left) %></p>
+      </strong>
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#bill-edit-<%= bill.id %>">
         Edit Bill
       </button>

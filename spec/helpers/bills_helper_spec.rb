@@ -1,15 +1,17 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the BillsHelper. For example:
-#
-# describe BillsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe BillsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#plural_ownership" do
+    it "returns plural ownership if copayers count is 2 or more" do
+      count = rand(2..20)
+      string = "copayer"
+      expect(helper.plural_ownership(count, string)). to eq("copayers'")
+    end
+
+    it "returns singular ownership if copayers count is 1" do
+      count = 1
+      string = "copayer"
+      expect(helper.plural_ownership(count, string)).to eq("copayer's")
+    end
+  end
 end

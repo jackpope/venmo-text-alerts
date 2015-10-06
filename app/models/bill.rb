@@ -17,4 +17,13 @@ class Bill < ActiveRecord::Base
     end
   end
 
+  def amount_left
+    if copayers.present?
+      copayer_total = copayers.collect(&:amount).inject{ |sum, x| sum + x } #totals amounts owed
+    else
+      copayer_total = 0
+    end
+    total_amount - copayer_total
+  end
+
 end
