@@ -13,8 +13,16 @@ class BillsController < ApplicationController
         end
       end
     else
-      flash[:error] = "There was an error creating the bill. Please try again."
-      redirect_to bills_path
+      respond_to do |format|
+        format.html do
+          flash[:error] = "There was an error creating the bill. Please try again."
+          redirect_to bills_path
+        end
+        format.js do
+          @errors = parse_errors
+          render '/bills/failure.js.erb'
+        end
+      end
     end
   end
 
@@ -31,8 +39,16 @@ class BillsController < ApplicationController
         end
       end
     else
-      flash[:error] = "There was an error updating the bill. Please try again."
-      redirect_to bills_path
+      respond_to do |format|
+        format.html do
+          flash[:error] = "There was an error updating the bill. Please try again."
+          redirect_to bills_path
+        end
+        format.js do
+          @errors = parse_errors
+          render '/bills/failure.js.erb'
+        end
+      end
     end
   end
 
@@ -59,6 +75,12 @@ class BillsController < ApplicationController
       :day_of_month,
       :total_amount
       )
+  end
+
+  def parse_errors
+    # returns a string of all the errors.
+    # format = <li>Field In Error: first error, second error</li>
+    @bill.errors.messages.collect { |k, v| "<li>#{k.to_s.split('_').map{|a|a.capitalize}.join(' ')}: #{v.join(', ')}</li>" }.join('')
   end
 
 end

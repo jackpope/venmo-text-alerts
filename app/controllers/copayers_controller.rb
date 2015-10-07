@@ -21,9 +21,7 @@ class CopayersController < ApplicationController
         end
         format.js do
           @errors = parse_errors
-          # binding.pry
-          render '/bills/copayer_failure.js.erb'
-          # render json: @copayer.errors, status: :unprocessable_entity
+          render '/bills/failure.js.erb'
         end
       end
     end
@@ -43,8 +41,16 @@ class CopayersController < ApplicationController
         end
       end
     else
-      flash[:error] = "There was an error updating the copayer. Please try again."
-      redirect_to bills_path
+      respond_to do |format|
+        format.html do
+          flash[:error] = "There was an error updating the copayer. Please try again."
+          redirect_to bills_path
+        end
+        format.js do
+          @errors = parse_errors
+          render '/bills/failure.js.erb'
+        end
+      end
     end
   end
 
@@ -79,6 +85,8 @@ class CopayersController < ApplicationController
   end
 
   def parse_errors
+    # returns a string of all the errors.
+    # format = <li>Field In Error: first error, second error</li>
     @copayer.errors.messages.collect { |k, v| "<li>#{k.to_s.split('_').map{|a|a.capitalize}.join(' ')}: #{v.join(', ')}</li>" }.join('')
   end
   
