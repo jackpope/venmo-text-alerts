@@ -26,7 +26,7 @@ class TextMessage
     username = copayer.bill.user.venmo_user_name
     amount = copayer.amount
     note = copayer.bill.title.downcase
-    "https://venmo.com/?txn=charge&recipients=#{username}&amount=#{amount}&note=#{note}&audience=private"
+    "https://venmo.com/?txn=charge&recipients=#{username.split.join("%20")}&amount=#{amount}&note=#{note}&audience=private"
   end
 
   def self.post_message(number_to, body)
