@@ -10,10 +10,23 @@ class Copayer < ActiveRecord::Base
   validates :phone_number, presence: true
   validate :phone_number_must_be_valid
 
+  validate :copayers_amounts_must_not_exceed_bill_amount
+
   def phone_number_must_be_valid
     if phone_number.present?
       phone_number.gsub!(/[^\(\)\d\+]/, '') # remove strange characters
       errors.add(:phone_number_must_be_valid, "phone number must be 10 characters") unless phone_number.length == 10
+    end
+  end
+
+  def copayers_amounts_must_not_exceed_bill_amount
+    if Bill.where(id: bill_id).present? # to keep the tests happy
+      bill = Bill.find(bill_id)
+      already_owed = bill.copayers.collect(&:amount).inject{ |sum, x| sum + x } #totals amounts owed
+      bill_total_amount = bill.total_amount
+      if bill_total_amount < (already_owed.to_i + amount)
+        errors.add(:copayers_amounts_must_not_exceed_bill_amount, "Copayers' totals cannot exceed the total amount of the bill")
+      end
     end
   end
 

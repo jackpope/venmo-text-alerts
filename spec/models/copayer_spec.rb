@@ -17,6 +17,18 @@ RSpec.describe Copayer, type: :model do
     expect(FactoryGirl.build(:copayer, amount: nil)).not_to be_valid
   end
 
+  it "is invalid if the total exceeds total_amount of bill" do
+    bill = Bill.new(title: 'title', description: 'description', user_id: 1, total_amount: 100, day_of_month: 15)
+    bill.save
+    first_copayer = bill.copayers.create(
+      first_name: 'John',
+      last_name: 'Doe',
+      phone_number: "111-111-1111",
+      amount: 80
+      )
+    expect(FactoryGirl.build(:copayer, amount: 25, bill_id: bill.id)).not_to be_valid
+  end
+
   describe "custom phone number validation" do
     it "is invalid with a phone number less than 10 digits" do
       expect(FactoryGirl.build(:copayer, phone_number: "12345678")).not_to be_valid
