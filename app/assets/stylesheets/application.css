@@ -54,3 +54,7 @@
 .modal-errors ul {
   list-style: none;
 }
+
+#bill-collection {
+  max-width: 100%;
+}
