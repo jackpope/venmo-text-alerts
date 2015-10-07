@@ -1,7 +1,7 @@
 <tr>
   <td><%= copayer.name %></td>
-  <td><%= copayer.amount %></td>
-  <td><%= copayer.phone_number %></td>
+  <td><%= number_to_currency(copayer.amount) %></td>
+  <td><%= number_to_phone(copayer.phone_number, country_code: 1) %></td> 
   <td>
     <button type="button" class="btn btn-warning btn-copayer-table" data-toggle="modal" data-target="#copayer-update-<%= copayer.id %>">
       Edit
