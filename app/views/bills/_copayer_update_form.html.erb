@@ -13,7 +13,7 @@
           </div>
           <div class="form-group">
             <%= label_tag :amount %>
-            <%= text_field_tag :amount, copayer.amount, class: 'form-control' %>
+            <%= text_field_tag :amount, number_to_currency(copayer.amount), class: 'form-control' %>
           </div>
           <div class="form-group">
             <%= label_tag :phone_number %>
