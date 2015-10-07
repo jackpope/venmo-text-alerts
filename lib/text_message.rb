@@ -3,7 +3,8 @@ class TextMessage
 
   def self.create(copayer)
     venmo_url = TextMessage.generate_venmo_link(copayer)
-    body = "Hey #{copayer.first_name}, please use venmo link to pay your part of #{copayer.bill.title}. #{venmo_url}"
+    body_one = "Hey #{copayer.first_name}, please use venmo link to pay your part of #{copayer.bill.title}."
+    body_two = "Link: #{venmo_url}"
     number = copayer.phone_number
     formatted_number = TextMessage.format_phone_number(number)
     # ready to send
