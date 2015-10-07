@@ -8,7 +8,9 @@ class TextMessage
     number = copayer.phone_number
     formatted_number = TextMessage.format_phone_number(number)
     # ready to send
-    TextMessage.post_message(formatted_number, body)
+    TextMessage.post_message(formatted_number, body_one)
+    sleep 20
+    TextMessage.post_message(formatted_number, body_two)
   end
 
   def self.format_phone_number(number)
