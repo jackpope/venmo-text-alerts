@@ -1,0 +1,9 @@
+
+
+// #<div class="alert alert-danger">
+// #        <button type="button" class="close" data-dismiss="alert">&times;</button>
+// #        <%= flash[:error] %>
+//  #     </div>
+console.log("<%=j simple_format "<ul>#{@errors}</ul>" %>")
+$(".modal-errors").remove();
+$(".modal.fade.in .modal-footer").append("<div class='alert alert-danger modal-errors'><%=j simple_format "<ul>#{@errors}</ul>" %></div>")

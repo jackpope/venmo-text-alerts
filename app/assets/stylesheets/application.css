@@ -45,3 +45,12 @@
 .modal-open {
   overflow: scroll;
 }
+
+.modal-errors {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.modal-errors ul {
+  list-style: none;
+}
