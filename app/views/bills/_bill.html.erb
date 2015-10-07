@@ -52,10 +52,10 @@
           <td>Amount Owed</td>
           <td>Phone Number</td>
         </thead>
-        <%= render partial: 'copayer', collection: bill.copayers, as: :copayer %>
+        <%= render partial: 'bills/copayer', collection: bill.copayers, as: :copayer %>
       </table>
       <div id="bill-copayer-update-form-<%= bill.id %>">
-        <%= render partial: 'copayer_update_form', collection: bill.copayers, as: :copayer %>
+        <%= render partial: 'bills/copayer_update_form', collection: bill.copayers, as: :copayer %>
       </div>
       <div class="modal fade" id="copayer-add-<%= bill.id %>" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">

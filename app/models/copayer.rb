@@ -10,7 +10,7 @@ class Copayer < ActiveRecord::Base
   validates :phone_number, presence: true
   validate :phone_number_must_be_valid
 
-  validate :copayers_amounts_must_not_exceed_bill_amount
+  validate :copayers_amounts_must_not_exceed_bill_amount, on: :create
 
   def phone_number_must_be_valid
     if phone_number.present?
@@ -23,8 +23,7 @@ class Copayer < ActiveRecord::Base
     if Bill.where(id: bill_id).present? # to keep the tests happy
       bill = Bill.find(bill_id)
       already_owed = bill.copayers.collect(&:amount).inject{ |sum, x| sum + x } #totals amounts owed
-      bill_total_amount = bill.total_amount
-      if bill_total_amount < (already_owed.to_i + amount)
+      if bill.total_amount < (already_owed.to_f + amount.to_f)
         errors.add(:copayers_amounts_must_not_exceed_bill_amount, "Copayers' totals cannot exceed the total amount of the bill")
       end
     end
