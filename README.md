@@ -17,4 +17,4 @@ TWILIO_NUMBER: "+15554443333"
 ```
 
 #### Screenshot
-![Venmo Text Alerts screenshot](http://venmo-text-alerts.herokuapp.com/assets/images/screenshot.png)
+![Venmo Text Alerts screenshot](http://venmo-text-alerts.herokuapp.com/assets/screenshot.png)
