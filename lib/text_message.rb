@@ -1,15 +1,14 @@
 require 'twilio-ruby'
 class TextMessage
 
-  def self.create(copayer)
+  def self.create(copayer) # sends two text messages with link
     venmo_url = TextMessage.generate_venmo_link(copayer)
     body_one = "Hey #{copayer.first_name}, please use venmo link to pay your part of #{copayer.bill.title}."
     body_two = "Link: #{venmo_url}"
-    number = copayer.phone_number
-    formatted_number = TextMessage.format_phone_number(number)
+    formatted_number = TextMessage.format_phone_number(copayer.phone_number)
     # ready to send
     TextMessage.post_message(formatted_number, body_one)
-    sleep 20
+    sleep 10
     TextMessage.post_message(formatted_number, body_two)
   end
 
@@ -20,25 +19,23 @@ class TextMessage
     else
       number = "+1" + number
     end
+    number
   end
 
   def self.generate_venmo_link(copayer)
     username = copayer.bill.user.venmo_user_name
     amount = copayer.amount
-    note = copayer.bill.title.downcase
-    "https://venmo.com/?txn=pay&recipients=#{username}&amount=#{amount}&note=#{note.split.join("%20")}&audience=private"
+    note = copayer.bill.title.downcase.split.join("%20")
+    "https://venmo.com/?txn=pay&recipients=#{username}&amount=#{amount}&note=#{note}&audience=private"
   end
 
   def self.post_message(number_to, body)
-    account_sid = ENV['TWILIO_SID']
-    auth_token = ENV['TWILIO_AUTH_TOKEN']
-
-    @client = Twilio::REST::Client.new account_sid, auth_token 
+    client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_AUTH_TOKEN'])
  
-    @client.account.messages.create({
-      :from => "+" + ENV['TWILIO_NUMBER'], 
-      :to => number_to, 
-      :body => body,  
+    client.account.messages.create({
+      from: "+" + ENV['TWILIO_NUMBER'], 
+      to: number_to, 
+      body: body  
     })
   end
 
